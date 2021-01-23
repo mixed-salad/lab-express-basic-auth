@@ -6,7 +6,7 @@ const sassMiddleware = require('node-sass-middleware');
 const serveFavicon = require('serve-favicon');
 
 const indexRouter = require('./routes/index');
-
+const authenticationRouter = require('./routes/authentication');
 const app = express();
 
 // Setup view engine
@@ -29,6 +29,7 @@ app.use(
 );
 
 app.use('/', indexRouter);
+app.use('/authentication', authenticationRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
