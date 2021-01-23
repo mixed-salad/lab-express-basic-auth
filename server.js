@@ -1,7 +1,7 @@
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 
-const app = require('./app');
 const mongoose = require('mongoose');
+const app = require('./app');
 
 const PORT = parseInt(process.env.PORT, 10);
 const URI = process.env.MONGODB_URI;

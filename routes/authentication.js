@@ -33,4 +33,36 @@ router.post('/sign-up', (req, res, next) => {
     });
 });
 
+router.get('/log-in', (req, res, next) =>{
+    res.render('log-in');
+});
+
+router.post('/log-in', (req, res, next) => {
+    const data = req.body;
+    let user;
+    User.findOne({
+        username: data.username
+    })
+    .then(doc => {
+        user = doc;
+        if(user) {
+            return bcryptjs.compare(data.password, user.hashedPassword);
+        } else {
+            throw new Error('There is no user registered with that username.')
+        }
+    })
+    .then(result => {
+        if(result){
+            req.session.userId = user._id;
+            res.redirect('/profile');
+        } else {
+            throw new Error('The password does not match.');
+        }
+    })
+    .catch(error => {
+        next(error);
+    });
+
+});
+
 module.exports = router;
