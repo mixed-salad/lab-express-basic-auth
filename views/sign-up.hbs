@@ -2,9 +2,9 @@
 
 <form method="POST">
 <label for="input-username">Username</label>
-<input required type="text" name="username" placeholder="Your username" id="input-username">
+<input required type="text" minlength="2" maxlength="16" name="username" placeholder="Your username" id="input-username">
 <label for="input-password">Password</label>
-<input required type="password" name="password" id="input-password" placeholder="create a password">
+<input required type="password" minlength="3" maxlength="16" name="password" id="input-password" placeholder="create a password">
 <button>Create</button>
 
 </form>
